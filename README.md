@@ -1,2 +1,2 @@
 # MunchGrafittiWall
-Exam in Agile Project PRO202
+This is the main project for our exam in Agile Project PRO202
