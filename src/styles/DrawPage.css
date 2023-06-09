@@ -1,0 +1,94 @@
+body {
+    background-color: #E0A59C;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+  }
+  
+  #container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    padding: 20px;
+    z-index: 9999;
+  }
+  
+  #rightSidebar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    padding: 20px;
+    z-index: 9999;
+  }
+  
+  .paletteBtn {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border: 1;
+    border-color: #ffffff;
+    margin: 15px;
+  }
+  
+  .sizeBtn {
+    margin-left: 1vw;
+    border-color: white;
+    background-color: #1d242d;
+  }
+  
+  .imgBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E0A59C;
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .sidebarImg {
+    width: 70px;
+  }
+  
+  #sendBtn {
+    background-color: #988155;
+    font-size: x-large;
+    color: #ffffff;
+    height: 60px;
+    width: 250px;
+    border: 0px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }  
+  
+  #myCanvas {
+    background-color: #ffffff;
+    border: 1px solid black;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
