@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
+import backBtnImg from '../assets/images/back.png';
 
 function DrawingBoard() {
     const curColor = useRef('black');
@@ -246,7 +247,7 @@ function DrawingBoard() {
       
         <Link to="/">
             <button id="backButton" className="imgBtn">
-            <img src="images\back.png" className="sidebarImg" />
+            <img src={backBtnImg} className="sidebarImg" />
             </button>
         </Link>
 

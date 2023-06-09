@@ -1,0 +1,97 @@
+body {
+    background-color: #E0A59C;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    left: 2vw;
+}
+
+.container p {
+    margin: 0;
+    padding: 50px 0;
+    font-size: 2vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#Norw {
+    position: absolute;
+    bottom: 4vh;
+    left: 9vw;
+    font-size: x-large;
+    border: 0px;
+    border-radius: 10%;
+    background-color: #988155;
+    color: white;
+    padding: 15px
+}
+
+#Eng {
+    position: absolute;
+    color: #ffffff;
+    bottom: 4vh;
+    left: 3vw;
+    font-size: x-large;
+    border: 0px;
+    background-color: #988155;
+    border-radius: 10%;
+    padding: 15px;
+}
+
+#title {
+    position: absolute;
+    font-size: 4vw;
+    top: 5vh;
+    left: 1vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#munchImage {
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    width: 10vw;
+}
+
+#oneLiner {
+    position: absolute;
+    top: 15vh;
+    right: 10vw;
+    width: 50vw;
+}
+
+#start {
+    background-color: #988155;
+    font-size: x-large;
+    color: #ffffff;
+    height: 60px;
+    width: 250px;
+    border: 0px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+#start:hover {
+    transform: scale(1.1);
+}
+
+#Norw.clicked,
+#Eng.clicked {
+    text-decoration: underline;
+}
