@@ -6,7 +6,6 @@ import HomePage from '../pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DrawPage from '../pages/DrawPage';
 
-
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -15,7 +14,7 @@ const Login = () => {
     const handleAdminLogin = () => {
       // Simple validation for the sake of example
       // Typically, this should be done with a backend service
-      if (password === "admin123") {
+      if (password === process.env.REACT_APP_ADMIN_PASSWORD) {
         setUsername("Admin");
         setPasswordError(null);
       } else {
