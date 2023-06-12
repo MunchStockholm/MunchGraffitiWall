@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import '../css/App.css';
+import '../styles/App.css';
 import axios, { AxiosResponse } from 'axios';
 
 const AdminControllBoard = () => {
@@ -41,7 +41,7 @@ const AdminControllBoard = () => {
             {isLoading ? <div>Loading...</div> : 
             images.map((image) => (
                 <div key={image._id} className="grid-item">
-                    <img src={image.url} alt={`Image ${image._id}`} />
+                    <img className="grid-img" src={image.url} alt={`Image ${image._id}`} />
                     <button 
                         onClick={() => removeFromBoard(image._id)} 
                         disabled={isLoading}>
