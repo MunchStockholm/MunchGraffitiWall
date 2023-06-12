@@ -1,4 +1,4 @@
-import {useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../styles/Login.css';
 import AdminControllBoard from './AdminControlBoard';
 import ColorMode from '../styles/ColorMode';

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 function DrawingBoard() {
     const curColor = useRef('black');
@@ -246,7 +246,7 @@ function DrawingBoard() {
       
         <Link to="/">
             <button id="backButton" className="imgBtn">
-            <img src="images\back.png" className="sidebarImg" />
+            <img src="images\back.png" className="sidebarImg" alt="back.png" />
             </button>
         </Link>
 
@@ -367,7 +367,7 @@ function DrawingBoard() {
         <p>
 
           <button id="undoBtn" className="imgBtn" onClick={undoLastLine}>
-            <img src="images\undo.png" className="sidebarImg" />
+            <img src="images\undo.png" className="sidebarImg" alt="undo.png" />
           </button>
 
           <button id="sendBtn" className="imgBtn" onClick={sendDrawing}>
