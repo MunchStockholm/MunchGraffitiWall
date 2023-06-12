@@ -1,0 +1,139 @@
+body {
+    background-color: #E0A59C;
+    margin: 0;
+    padding: 0;
+}
+
+#homepage-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-height: 100vh;
+    padding: 0 3vw 0 3vw;
+}
+
+#munchImage {
+    position: absolute;
+    top: 3vh;
+    right: 2.5vw;
+    width: 10vw;
+}
+
+#title {
+    font-size: 4vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0 0 0 3vw;
+    height: 10vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+#steps-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 50px 0 50px 3vw;
+    font-size: 2vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#oneLiner {
+    width: 50vw;
+    object-fit: contain;
+    transition: width 0.5s ease-in-out;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    height: 10vh;
+    padding: 0 2vw 3vh 2vw;
+}
+
+.footer-btn {
+    background-color: #988155;
+    color: white;
+    font-size: x-large;
+    border-radius: 10px;
+    border: none;
+    padding: 15px;
+    margin: 0 1vw;
+}
+
+.lang-btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nor {
+    left: 9vw;
+}
+
+#eng {
+    left: 3vw;
+}
+
+#start-btn {
+    width: 10vw;
+    margin-left: 65vw;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+#start-btn:hover {
+    transform: scale(1.1);
+}
+
+#nor.clicked,
+#eng.clicked {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1000px) {
+
+
+    #title {
+        margin-top: 20vh;
+    }
+    
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: auto;
+        margin-bottom: 15vh;
+    }
+    
+    #steps-group {
+        padding:3vw;
+        font-size: 1.5rem;
+    }
+
+    #start-btn {
+        margin-left: 50vw;
+        width: 15vw;
+    }
+}
