@@ -49,7 +49,7 @@ body {
   .sizeBtn {
     margin-left: 1vw;
     border-color: white;
-    background-color: #1d242d;
+    background-color: #000000;
   }
   
   .imgBtn {
@@ -79,6 +79,11 @@ body {
     right: 20px;
   }  
   
+  #sendBtn:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+  }  
+
   #myCanvas {
     background-color: #ffffff;
     border: 1px solid black;
