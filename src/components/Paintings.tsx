@@ -36,19 +36,22 @@ const Paintings = () => {
         setIsLoading(true);
         let tempPositions = generatePositions(count);
         tempPositions = shuffleArray(tempPositions);
-        setPositions(tempPositions);
-
+    
         let tempImages = Array(100).fill({id: -1, url: crazybunny, position: ""}); // Add 100 initial images
-
+    
         tempImages = tempImages.map((image, index) => ({...image, id: index, position: tempPositions[index]}));
 
+        tempImages.sort(() => Math.random() - 0.5);
+    
         setImages(tempImages);
+    
         const interval = setInterval(() => {
             addNewImagesFromApi('https://graffitiwallserver.onrender.com/');
-          }, 10000);
-          return () => {
+        }, 10000);
+        
+        return () => {
             clearInterval(interval);
-          };
+        };
     }, []);
 
     const fetchImagesFromApi = async (url: string): Promise<string[]> => {
@@ -73,15 +76,13 @@ const Paintings = () => {
             let newImagesState = [...prevImages];
     
             newImages.forEach((newImage, index) => {
-                const replaceIndex = (prevReplaceIndex + index) % 100; 
-                newImagesState[replaceIndex] = {id: replaceIndex, url: newImage, position: positions[replaceIndex]};
+                const replaceIndex = index % 100; 
+                newImagesState[replaceIndex] = {...newImagesState[replaceIndex], url: newImage};
             });
     
-            setReplaceIndex((prevReplaceIndex + newImages.length) % 100);
             return newImagesState;
         });
     };
-
     return (
         <div>
             {isLoading ? <div>Loading...</div> :
