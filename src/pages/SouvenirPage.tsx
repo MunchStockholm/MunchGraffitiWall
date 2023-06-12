@@ -1,8 +1,11 @@
 import Souvenir from "../components/Souvenir";
+import '../styles/Souvenir.css';
 
 const SouvenirPage = () => {
     return (
-        <Souvenir />
+        <div className='wrapper'>
+            <Souvenir />
+        </div>
     );
 }
 
