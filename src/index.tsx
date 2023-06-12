@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ArtworkProvider from './contexts/ArtworkContext';
+import ArtworkIdProvider from './contexts/ArtworkIdContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ArtworkProvider>
-      <App />
+      <ArtworkIdProvider>
+        <App />
+      </ArtworkIdProvider>
     </ArtworkProvider>
   </React.StrictMode>
 );

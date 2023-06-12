@@ -13,6 +13,7 @@
     align-items: center;
     width: 30%;
     height: 80%;
+    object-fit: contain;
 }
 
 .frame {
@@ -67,9 +68,19 @@
 
 .image-container {
     width: 80%;
-    height: 80%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    object-fit: contain;
+    background-color: white;
 }
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/*TODO screen <1580, endre størrelse/background size på frame*/
