@@ -372,7 +372,7 @@ function DrawingBoard() {
           </button>
 
           <button id="sendBtn" className="imgBtn" onClick={sendDrawing}>
-            Send
+          <Link to="/souvenir"> Start</Link>
           </button>
         </p>
       </div>

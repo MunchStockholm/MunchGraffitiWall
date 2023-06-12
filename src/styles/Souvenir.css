@@ -1,0 +1,35 @@
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.souvenir-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 75%;
+    border: 1px solid black;
+    background-color: #E0A59C;
+}
+
+.frame {
+    background-color: #EB4C2C;
+}
+
+.top-frame {
+    width: 100%;
+    height: 10%;
+    place-self: flex-start;
+}
+
+.bottom-frame {
+    width: 100%;
+    height: 15%;
+    place-self: flex-end;
+}

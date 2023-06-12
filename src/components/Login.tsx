@@ -5,6 +5,7 @@ import ColorMode from '../styles/ColorMode';
 import HomePage from '../pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DrawPage from '../pages/DrawPage';
+import SouvenirPage from '../pages/SouvenirPage';
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -44,6 +45,7 @@ const Login = () => {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/draw" element={<DrawPage />} />
+                    <Route path="/souvenir" element={<SouvenirPage />} />
                 </Routes>
             </Router>
         </div>
