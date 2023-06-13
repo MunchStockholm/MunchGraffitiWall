@@ -1,11 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'; // useNavigate lagt til av Caro
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import backBtnImg from '../assets/images/back.png';
 import undoBtnImg from '../assets/images/undo.png';
-// lagt til av Caro
 import { useContext } from 'react';
 import { ArtworkIdContext } from '../contexts/ArtworkIdContext';
-//import Paintings from './Paintings';
 
 function DrawingBoard() {
   const curColor = useRef('black');
@@ -21,7 +19,6 @@ function DrawingBoard() {
   const [isCanvasEmpty, setCanvasEmpty] = useState(true);
   const [isDiscardVisible, setDiscardVisible] = useState(false);
 
-  // lagt til av Caro
   const navigate = useNavigate();
   const [, setArtworkId] = useContext(ArtworkIdContext);
   const [isLoadVisible, setLoadVisible] = useState(false);
@@ -186,6 +183,7 @@ function DrawingBoard() {
       myCanvas.removeEventListener('mousemove', handleMouseMove);
       myCanvas.removeEventListener('mouseup', handleMouseUp);
       myCanvas.removeEventListener('mouseleave', handleMouseLeave);
+
       document.removeEventListener('mousemove', handleDocumentMouseMove);
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
@@ -238,7 +236,7 @@ function DrawingBoard() {
     setLoadVisible(true);
 
     const myCanvas = document.getElementById('myCanvas');
-    const canvasDataUrl = myCanvas.toDataURL('image/png', 0.5); // caro la til 0.5 for å redusere kvaliteten (test)
+    const canvasDataUrl = myCanvas.toDataURL('image/png', 0.5);
     const [, base64Data] = canvasDataUrl.split(',');
 
     const artworkData = {
@@ -247,7 +245,7 @@ function DrawingBoard() {
       IsFeatured: true,
     };
 
-    const response = await fetch('https://graffitiwallserver.onrender.com/', {
+    await fetch('https://graffitiwallserver.onrender.com/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -265,22 +263,8 @@ function DrawingBoard() {
         lineHistory.current = []; // Empty the undo history
         setCanvasEmpty(true);
 
-        navigate('/souvenir'); 
+        navigate('/souvenir'); // From here we need to fix a pop up to retrieve souveir, not a page itself
       })
-
-      /*if (response.ok) {
-        console.log('Drawing sent successfully!');
-        // Clear the canvas
-        const ctx = myCanvas.getContext('2d');
-        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-        lineHistory.current = []; // Empty the undo history
-        setCanvasEmpty(true); // Set canvas as empty
-        // console.log(data);
-        // setArtworkId(data.insertedId);
-        navigate('/souvenir'); 
-      } else {
-        throw new Error('Failed to send the drawing'); // ..
-      }*/
     } catch (error) {
       console.error('Error sending drawing:', error);
       // Display a popup
