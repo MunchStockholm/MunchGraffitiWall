@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    z-index: 1;
   }
   
   #board {
@@ -17,6 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    z-index: 1;
   }
   
   #sidebar {
@@ -25,7 +27,7 @@ body {
     left: 0;
     width: 200px;
     padding: 20px;
-    z-index: 9999;
+    z-index: 1;
   }
   
   #rightSidebar {
@@ -49,7 +51,7 @@ body {
   .sizeBtn {
     margin-left: 1vw;
     border-color: white;
-    background-color: #1d242d;
+    background-color: #000000;
   }
   
   .imgBtn {
@@ -79,6 +81,11 @@ body {
     right: 20px;
   }  
   
+  #sendBtn:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+  }  
+
   #myCanvas {
     background-color: #ffffff;
     border: 1px solid black;
@@ -90,5 +97,38 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
+    z-index: 1;
+  }
+
+  .buttonTheme {
+    background-color: #988155;
+    font-size: x-large;
+    color: #ffffff;
+    height: 60px;
+    width: 250px;
+    border: 0px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  
+  #discardWarn {
+    background-color: #000000;
+    font-size: 50px;
+    color: #ffffff;
+    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+  }
+
+  #discardContainer {
+    border-radius: 1000px;
+    width: 540px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
   }
   
