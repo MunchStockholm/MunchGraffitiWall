@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from 'react-router-dom'; // useNavigate lagt til av Caro
 import { useRef, useEffect, useState } from 'react';
 import backBtnImg from '../assets/images/back.png';
@@ -21,8 +20,6 @@ function DrawingBoard() {
   const canvasY = useRef(0);
   const [isCanvasEmpty, setCanvasEmpty] = useState(true);
   const [isDiscardVisible, setDiscardVisible] = useState(false);
-  
-  //const BOUNDARY_SIZE = 200; // Adjust this value as per your desired boundary size
 
   // lagt til av Caro
   const navigate = useNavigate();
@@ -178,7 +175,7 @@ function DrawingBoard() {
     const handleBeforeUnload = (e) => {
       if (!isCanvasEmpty) {
         e.preventDefault();
-        e.returnValue = ''; // This text will be ignored by modern browsers, but it's necessary for older browsers
+        e.returnValue = '';
       }
     };
 
@@ -238,7 +235,7 @@ function DrawingBoard() {
 
   const sendDrawing = async () => {
     try {
-    setLoadVisible(true); // Show the loading message
+    setLoadVisible(true);
 
     const myCanvas = document.getElementById('myCanvas');
     const canvasDataUrl = myCanvas.toDataURL('image/png', 0.5); // caro la til 0.5 for å redusere kvaliteten (test)
@@ -278,8 +275,8 @@ function DrawingBoard() {
         ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
         lineHistory.current = []; // Empty the undo history
         setCanvasEmpty(true); // Set canvas as empty
-        //console.log(data);
-        //setArtworkId(data.insertedId);
+        // console.log(data);
+        // setArtworkId(data.insertedId);
         navigate('/souvenir'); 
       } else {
         throw new Error('Failed to send the drawing'); // ..
@@ -289,10 +286,9 @@ function DrawingBoard() {
       // Display a popup
       window.alert('Failed to send the drawing. Please try again later.');
     } finally {
-      setLoadVisible(false); // Hide the loading message
+      setLoadVisible(false);
     }
   };
-  
 
 return (
   <div>
