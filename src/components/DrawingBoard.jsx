@@ -1,6 +1,9 @@
+
 import { Link, useNavigate } from 'react-router-dom'; // useNavigate lagt til av Caro
 import { useRef, useEffect, useState } from 'react';
 import backBtnImg from '../assets/images/back.png';
+import Paintings from './Paintings';
+
 
 // lagt til av Caro
 import { useContext } from 'react';
@@ -383,7 +386,7 @@ function DrawingBoard() {
             <img src="images\undo.png" className="sidebarImg" alt="undo.png" />
           </button>
 
-          <button id="sendBtn" className="imgBtn" onClick={sendDrawing}>Send</button>
+          <button id="sendBtn" className="imgBtn" onClick={sendDrawing}>Send</button> //mulig vi bør bruke link istedenfor useNavigate
         </p>
       </div>
     </div>

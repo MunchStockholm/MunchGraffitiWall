@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DrawPage from '../pages/DrawPage';
 import SouvenirPage from '../pages/SouvenirPage';
+import PaintingsPage from './Paintings';
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -46,6 +47,9 @@ const Login = () => {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/draw" element={<DrawPage />} />
                     <Route path="/souvenir" element={<SouvenirPage />} />
+                    <Route path="/paintings" element={<PaintingsPage />}
+                    />
+
                 </Routes>
             </Router>
         </div>
