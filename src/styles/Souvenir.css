@@ -1,0 +1,86 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.souvenir-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.frame {
+    background-image: url('../assets/images/solen.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+.top-frame {
+    width: 100%;
+    height: 10%;
+    place-self: flex-start;
+}
+
+.bottom-frame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15%;
+    place-self: flex-end;
+    justify-content: flex-start;
+}
+
+.logo {
+    height: 80%;
+    margin: 0 5% 0 5%;
+}
+
+.middle-frame {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-frame {
+    width: 10%;
+    height: 100%;
+    place-self: flex-start;
+}
+
+.right-frame {
+    width: 10%;
+    height: 100%;
+    place-self: flex-end;
+}
+
+.image-container {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    background-color: white;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/*TODO screen <1580, endre størrelse/background size på frame*/
