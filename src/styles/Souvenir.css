@@ -1,6 +1,6 @@
 .wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -11,21 +11,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
-    height: 80%;
-    object-fit: contain;
+    width: 30vw;
+    height: 80vh;
+    margin: 0 5vw 0 5vw;
 }
 
 .frame {
     background-image: url('../assets/images/solen.jpg');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain !important;
     background-attachment: fixed;
 }
 
 .top-frame {
-    width: 100%;
-    height: 10%;
+    width: 30vw;
+    height: 10vh;
     place-self: flex-start;
 }
 
@@ -34,20 +34,20 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 15%;
+    width: 30vw;
+    height: 15vh;
     place-self: flex-end;
     justify-content: flex-start;
 }
 
 .logo {
-    height: 80%;
-    margin: 0 5% 0 5%;
+    height: 10vh;
+    margin: 0 2vw 0 2vw;
 }
 
 .middle-frame {
-    width: 100%;
-    height: 75%;
+    width: 30vw;
+    height: 55vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -55,25 +55,21 @@
 }
 
 .left-frame {
-    width: 10%;
-    height: 100%;
+    width: 5vw;
+    height: 55vh;
     place-self: flex-start;
 }
 
 .right-frame {
-    width: 10%;
-    height: 100%;
+    width: 5vw;
+    height: 55vh;
     place-self: flex-end;
 }
 
 .image-container {
-    width: 80%;
-    height: 100%;
+    width: 20vw;
+    height: 55vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    object-fit: contain;
     background-color: white;
 }
 
@@ -83,4 +79,20 @@
     object-fit: contain;
 }
 
-/*TODO screen <1580, endre størrelse/background size på frame*/
+/*TODO screen <1580 & >2466, endre størrelse/background size på frame*/
+
+@media screen and (max-width: 1580px) {
+    .frame {
+        background-size: cover;
+    }
+    
+    .logo {
+        height: 8vh;
+    }
+}
+
+@media screen and (min-width: 2466px) {
+    .frame {
+        background-size: cover;
+    }
+}
