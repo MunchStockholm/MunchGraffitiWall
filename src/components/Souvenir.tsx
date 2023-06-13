@@ -17,7 +17,6 @@ const Souvenir = () => {
         const artwork = { _id: artworkData._id, url: URL.createObjectURL(blob) };
         setSouvenirArtwork(artwork);
     }
-    
 
     useEffect(() => {
         fetchArtwork().catch(error => console.log(error));
