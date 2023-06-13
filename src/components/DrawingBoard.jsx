@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import backBtnImg from '../assets/images/back.png';
 import undoBtnImg from '../assets/images/undo.png';
@@ -113,6 +114,7 @@ function DrawingBoard() {
           lineHistory.current.push([...currentLine.current]);
         }
         currentLine.current = [];
+        setCanvasEmpty(lineHistory.current.length === 0);
       }
     };
 
@@ -199,14 +201,18 @@ function DrawingBoard() {
   };
 
   const backButton = () => {
-      if (!isCanvasEmpty) {
-        console.log("Discard warn");
-        setDiscardVisible(true); // Show discardWarn when canvas is not empty
-      } else {
-        console.log("Return");
-        setDiscardVisible(false); // Hide discardWarn when canvas is empty
-      }
-    };
+    if (!isCanvasEmpty) {
+      console.log("Visible!");
+      setDiscardVisible(true); // Show discardWarn when canvas is not empty
+    } else {
+      console.log("Invisible!");
+      setDiscardVisible(false); // Hide discardWarn when canvas is empty
+    }
+  };
+
+  const backButtonNo = () => {
+    setDiscardVisible(false);
+  }
 
   const sendDrawing = () => {
     const myCanvas = document.getElementById('myCanvas');
@@ -240,13 +246,15 @@ return (
       Sorry, your browser doesn't support canvas technology.
     </canvas>
 
-    <div id="discardWarn">
-          Discard drawing?
+    <div id="discardContainer">
+      <div id="discardWarn" style={{ display: isDiscardVisible ? 'block' : 'none' }}>
+        Discard drawing?
           <div className='btn-group'>
-              <button className="buttonTheme" onClick={sendDrawing} disabled={isCanvasEmpty}>No</button>
-              <button className="buttonTheme" onClick={sendDrawing} disabled={isCanvasEmpty}>Yes</button>
-          </div>
+            <button className="buttonTheme" onClick={backButtonNo} disabled={isCanvasEmpty}>No</button>
+            <Link to="/"><button className="buttonTheme" disabled={isCanvasEmpty}>Yes</button></Link>
+        </div>
       </div>
+    </div>
 
     <div>
       <div id="sidebar">
