@@ -309,7 +309,7 @@ return (
           </button>
 
 
-          <button id="sendBtn" className="imgBtn" onClick={sendDrawing} disabled={isCanvasEmpty}> //mulig vi bør bruke link istedenfor useNavigate
+          <button id="sendBtn" className="imgBtn" onClick={sendDrawing} disabled={isCanvasEmpty}>
               Send
           </button>
           </p>
