@@ -16,6 +16,7 @@ function DrawingBoard() {
   const canvasY = useRef(0);
   const [isCanvasEmpty, setCanvasEmpty] = useState(true);
   const [isDiscardVisible, setDiscardVisible] = useState(false);
+  const [isLoadVisible, setLoadVisible] = useState(false);
   const navigate = useNavigate();
 
   const changeColor = (color) => {
@@ -64,9 +65,14 @@ function DrawingBoard() {
       ctx.current.lineJoin = 'round';
     
       const myDiv = document.getElementById('discardWarn');
+      const myDiv2 = document.getElementById('loadContent');
     
       if (myDiv) {
         myDiv.style.display = isDiscardVisible ? 'block' : 'none';
+      }
+
+      if (myDiv2) {
+        myDiv2.style.display = isLoadVisible ? 'block' : 'none';
       }
 
     const handleMouseDown = (e) => {
@@ -214,31 +220,44 @@ function DrawingBoard() {
     setDiscardVisible(false);
   }
 
-  const sendDrawing = () => {
-    const myCanvas = document.getElementById('myCanvas');
-    const canvasDataUrl = myCanvas.toDataURL('image/png');
-    const [, base64Data] = canvasDataUrl.split(',');
-
-    const artworkData = {
-      ImageBytes: base64Data,
-      ImageUrl: '',
-      IsFeatured: true,
-    };
-
-    fetch('https://graffitiwallserver.onrender.com/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(artworkData),
-    })
-      .then((response) => {
-        console.log('Drawing sent successfully!');
-      })
-      .catch((error) => {
-        console.error('Error sending drawing:', error);
+  const sendDrawing = async () => {
+    try {
+      setLoadVisible(true); // Show the loading message
+  
+      const myCanvas = document.getElementById('myCanvas');
+      const canvasDataUrl = myCanvas.toDataURL('image/png');
+      const [, base64Data] = canvasDataUrl.split(',');
+  
+      const artworkData = {
+        ImageBytes: base64Data,
+        ImageUrl: '',
+        IsFeatured: true,
+      };
+  
+      const response = await fetch('https://graffitiwallserver.onrender.com/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(artworkData),
       });
-  }
+  
+      if (response.ok) {
+        console.log('Drawing sent successfully!');
+        // Redirect to a new page
+        window.location.href = 'https://example.com/new-page';
+      } else {
+        throw new Error('Failed to send the drawing');
+      }
+    } catch (error) {
+      console.error('Error sending drawing:', error);
+      // Display a popup
+      window.alert('Failed to send the drawing. Please try again later.');
+    } finally {
+      setLoadVisible(false); // Hide the loading message
+    }
+  };
+  
 
 return (
   <div>
@@ -253,6 +272,12 @@ return (
             <button className="buttonTheme" onClick={backButtonNo} disabled={isCanvasEmpty}>No</button>
             <Link to="/"><button className="buttonTheme" disabled={isCanvasEmpty}>Yes</button></Link>
         </div>
+      </div>
+    </div>
+
+    <div id="loadContainer">
+      <div id="loadContent" style={{ display: isLoadVisible ? 'block' : 'none' }}>
+        Sending drawing...
       </div>
     </div>
 
