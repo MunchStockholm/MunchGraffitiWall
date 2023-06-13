@@ -112,23 +112,52 @@ body {
   }
   
   #discardWarn {
-    background-color: #000000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Added to align items vertically */
+    background-color: #000000ce;
     font-size: 50px;
     color: #ffffff;
     z-index: 9999; /* Higher value to ensure it overlaps the canvas */
   }
-
+  
   #discardContainer {
     border-radius: 1000px;
-    width: 540px;
-    height: 160px;
+    display: flex;
+    flex-direction: column; /* Added to align items vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Added to center text horizontally */
+  }
+  
+  #loadContent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
+    flex-direction: column; /* Added to align items vertically */
+    background-color: #000000ce;
+    font-size: 50px;
+    color: #ffffff;
+    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+  }
+  
+  #loadContainer {
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: column; /* Added to align items vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Added to center text horizontally */
   }
   

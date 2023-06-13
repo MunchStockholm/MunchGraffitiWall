@@ -27,13 +27,19 @@ function DrawingBoard() {
   // lagt til av Caro
   const navigate = useNavigate();
   const [, setArtworkId] = useContext(ArtworkIdContext);
+  const [isLoadVisible, setLoadVisible] = useState(false);
 
   const changeColor = (color) => {
-    if (!isDown.current) {
-
-      curColor.current = color;
-      updateBrushSizeBackground();
+    if (isDown.current) {
+      // Finish the current line before changing color
+      isDown.current = false;
+      ctx.current.closePath();
+      lineHistory.current.push([...currentLine.current]);
+      currentLine.current = [];
+      setCanvasEmpty(lineHistory.current.length === 0);
     }
+    curColor.current = color;
+    updateBrushSizeBackground();
   };
 
   const changeBrushSize = (size) => {
@@ -75,9 +81,14 @@ function DrawingBoard() {
       ctx.current.lineJoin = 'round';
     
       const myDiv = document.getElementById('discardWarn');
+      const myDiv2 = document.getElementById('loadContent');
     
       if (myDiv) {
         myDiv.style.display = isDiscardVisible ? 'block' : 'none';
+      }
+
+      if (myDiv2) {
+        myDiv2.style.display = isLoadVisible ? 'block' : 'none';
       }
 
     const handleMouseDown = (e) => {
@@ -207,18 +218,17 @@ function DrawingBoard() {
           context.lineTo(point.x, point.y);
         }
       });
-
       context.stroke();
     });
   };
 
   const backButton = () => {
+    
     if (!isCanvasEmpty) {
-      console.log("Visible!");
-      setDiscardVisible(true); // Show discardWarn when canvas is not empty
+      setDiscardVisible(true);
     } else {
-      console.log("Invisible!");
-      setDiscardVisible(false); // Hide discardWarn when canvas is empty
+      setDiscardVisible(false);
+      navigate('/');
     }
   };
 
@@ -226,7 +236,10 @@ function DrawingBoard() {
     setDiscardVisible(false);
   }
 
-  const sendDrawing = () => {
+  const sendDrawing = async () => {
+    try {
+    setLoadVisible(true); // Show the loading message
+
     const myCanvas = document.getElementById('myCanvas');
     const canvasDataUrl = myCanvas.toDataURL('image/png', 0.5); // caro la til 0.5 for å redusere kvaliteten (test)
     const [, base64Data] = canvasDataUrl.split(',');
@@ -237,24 +250,37 @@ function DrawingBoard() {
       IsFeatured: true,
     };
 
-    fetch('https://graffitiwallserver.onrender.com/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(artworkData),
-    }) // lagt til av caro
-      .then((response) => response.json())
-      .then((data) => {
+    const response = await fetch('https://graffitiwallserver.onrender.com/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(artworkData),
+      });
+
+      if (response.ok) {
         console.log('Drawing sent successfully!');
+        // Clear the canvas
+        const ctx = myCanvas.getContext('2d');
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+        lineHistory.current = []; // Empty the undo history
+        setCanvasEmpty(true); // Set canvas as empty
         console.log(data);
         setArtworkId(data.insertedId);
         navigate('/souvenir'); 
-      }) // ..
-      .catch((error) => {
-        console.error('Error sending drawing:', error);
-      });
-  }
+      } else {
+        throw new Error('Failed to send the drawing'); // ..
+      }
+    } catch (error) {
+      console.error('Error sending drawing:', error);
+      // Display a popup
+      window.alert('Failed to send the drawing. Please try again later.');
+    } finally {
+      setLoadVisible(false); // Hide the loading message
+    }
+  };
+  
+  
 
 return (
   <div>
@@ -269,6 +295,12 @@ return (
             <button className="buttonTheme" onClick={backButtonNo} disabled={isCanvasEmpty}>No</button>
             <Link to="/"><button className="buttonTheme" disabled={isCanvasEmpty}>Yes</button></Link>
         </div>
+      </div>
+    </div>
+
+    <div id="loadContainer">
+      <div id="loadContent" style={{ display: isLoadVisible ? 'block' : 'none' }}>
+        Sending drawing...
       </div>
     </div>
 
@@ -295,10 +327,10 @@ return (
               <button style={{ backgroundColor: '#b93f35' }} className="paletteBtn" onClick={() => changeColor('#b93f35')}></button>
               <button style={{ backgroundColor: '#714f62' }} className="paletteBtn" onClick={() => changeColor('#714f62')}></button>
               <button style={{ backgroundColor: '#667c80' }} className="paletteBtn" onClick={() => changeColor('#667c80')}></button>
-              <button style={{ backgroundColor: '#dcb24e' }} className="paletteBtn" onClick={() => changeColor('#dcb24e')}></button>
+              <button style={{ backgroundColor: '#ee9b3e' }} className="paletteBtn" onClick={() => changeColor('#ee9b3e')}></button>
               <button style={{ backgroundColor: '#354060' }} className="paletteBtn" onClick={() => changeColor('#354060')}></button>
               <button style={{ backgroundColor: '#d5cdc1' }} className="paletteBtn" onClick={() => changeColor('#d5cdc1')}></button>
-              <button style={{ backgroundColor: '#ee9b3e' }} className="paletteBtn" onClick={() => changeColor('#ee9b3e')}></button>
+              <button style={{ backgroundColor: '#5b3e31' }} className="paletteBtn" onClick={() => changeColor('#5b3e31')}></button>
               <button style={{ backgroundColor: '#f7f0c7' }} className="paletteBtn" onClick={() => changeColor('#f7f0c7')}></button>
           </div>
 
