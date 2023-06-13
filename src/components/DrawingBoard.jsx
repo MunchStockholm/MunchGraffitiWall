@@ -256,21 +256,34 @@ function DrawingBoard() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(artworkData),
-      });
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Drawing sent successfully!');
+        console.log(data);
+        setArtworkId(data.insertedId);
 
-      if (response.ok) {
+        const ctx = myCanvas.getContext('2d');
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+        lineHistory.current = []; // Empty the undo history
+        setCanvasEmpty(true);
+
+        navigate('/souvenir'); 
+      })
+
+      /*if (response.ok) {
         console.log('Drawing sent successfully!');
         // Clear the canvas
         const ctx = myCanvas.getContext('2d');
         ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
         lineHistory.current = []; // Empty the undo history
         setCanvasEmpty(true); // Set canvas as empty
-        console.log(data);
-        setArtworkId(data.insertedId);
+        //console.log(data);
+        //setArtworkId(data.insertedId);
         navigate('/souvenir'); 
       } else {
         throw new Error('Failed to send the drawing'); // ..
-      }
+      }*/
     } catch (error) {
       console.error('Error sending drawing:', error);
       // Display a popup
@@ -279,7 +292,6 @@ function DrawingBoard() {
       setLoadVisible(false); // Hide the loading message
     }
   };
-  
   
 
 return (
