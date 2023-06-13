@@ -1,7 +1,12 @@
-import { Link } from 'react-router-dom';
+
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate lagt til av Caro
 import { useRef, useEffect, useState } from 'react';
 import backBtnImg from '../assets/images/back.png';
 import undoBtnImg from '../assets/images/undo.png';
+// lagt til av Caro
+import { useContext } from 'react';
+import { ArtworkIdContext } from '../contexts/ArtworkIdContext';
+//import Paintings from './Paintings';
 
 function DrawingBoard() {
   const curColor = useRef('black');
@@ -16,9 +21,16 @@ function DrawingBoard() {
   const canvasY = useRef(0);
   const [isCanvasEmpty, setCanvasEmpty] = useState(true);
   const [isDiscardVisible, setDiscardVisible] = useState(false);
+  
+  //const BOUNDARY_SIZE = 200; // Adjust this value as per your desired boundary size
+
+  // lagt til av Caro
+  const navigate = useNavigate();
+  const [, setArtworkId] = useContext(ArtworkIdContext);
 
   const changeColor = (color) => {
     if (!isDown.current) {
+
       curColor.current = color;
       updateBrushSizeBackground();
     }
@@ -216,7 +228,7 @@ function DrawingBoard() {
 
   const sendDrawing = () => {
     const myCanvas = document.getElementById('myCanvas');
-    const canvasDataUrl = myCanvas.toDataURL('image/png');
+    const canvasDataUrl = myCanvas.toDataURL('image/png', 0.5); // caro la til 0.5 for å redusere kvaliteten (test)
     const [, base64Data] = canvasDataUrl.split(',');
 
     const artworkData = {
@@ -231,10 +243,14 @@ function DrawingBoard() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(artworkData),
-    })
-      .then((response) => {
+    }) // lagt til av caro
+      .then((response) => response.json())
+      .then((data) => {
         console.log('Drawing sent successfully!');
-      })
+        console.log(data);
+        setArtworkId(data.insertedId);
+        navigate('/souvenir'); 
+      }) // ..
       .catch((error) => {
         console.error('Error sending drawing:', error);
       });
@@ -292,10 +308,12 @@ return (
               <img src={undoBtnImg} className="sidebarImg" />
           </button>
 
-          <button id="sendBtn" className="imgBtn" onClick={sendDrawing} disabled={isCanvasEmpty}>
+
+          <button id="sendBtn" className="imgBtn" onClick={sendDrawing} disabled={isCanvasEmpty}> //mulig vi bør bruke link istedenfor useNavigate
               Send
           </button>
           </p>
+
       </div>
     </div>
   </div>
