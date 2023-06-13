@@ -59,9 +59,9 @@ const Home = () => {
                     </button>
                 </div>
             
-                <button className='footer-btn' id='start-btn'>
-                    <Link to="/draw"> Start</Link>
-                </button>
+                <Link to="/draw">
+                    <button className='footer-btn' id='start-btn'>Start</button>
+                </Link>
             </footer>
         
         </div>

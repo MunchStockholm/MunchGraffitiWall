@@ -265,8 +265,8 @@ function DrawingBoard() {
         ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
         lineHistory.current = []; // Empty the undo history
         setCanvasEmpty(true); // Set canvas as empty
-        console.log(data);
-        setArtworkId(data.insertedId);
+        // console.log(data);
+        // setArtworkId(data.insertedId);
         navigate('/souvenir'); 
       } else {
         throw new Error('Failed to send the drawing'); // ..
