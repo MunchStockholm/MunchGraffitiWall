@@ -20,10 +20,16 @@ function DrawingBoard() {
   const navigate = useNavigate();
 
   const changeColor = (color) => {
-    if (!isDown.current) {
-      curColor.current = color;
-      updateBrushSizeBackground();
+    if (isDown.current) {
+      // Finish the current line before changing color
+      isDown.current = false;
+      ctx.current.closePath();
+      lineHistory.current.push([...currentLine.current]);
+      currentLine.current = [];
+      setCanvasEmpty(lineHistory.current.length === 0);
     }
+    curColor.current = color;
+    updateBrushSizeBackground();
   };
 
   const changeBrushSize = (size) => {
@@ -244,8 +250,11 @@ function DrawingBoard() {
   
       if (response.ok) {
         console.log('Drawing sent successfully!');
-        // Redirect to a new page
-        window.location.href = 'https://example.com/new-page';
+        // Clear the canvas
+        const ctx = myCanvas.getContext('2d');
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+        lineHistory.current = []; // Empty the undo history
+        setCanvasEmpty(true); // Set canvas as empty
       } else {
         throw new Error('Failed to send the drawing');
       }
@@ -257,6 +266,7 @@ function DrawingBoard() {
       setLoadVisible(false); // Hide the loading message
     }
   };
+  
   
 
 return (
@@ -304,10 +314,10 @@ return (
               <button style={{ backgroundColor: '#b93f35' }} className="paletteBtn" onClick={() => changeColor('#b93f35')}></button>
               <button style={{ backgroundColor: '#714f62' }} className="paletteBtn" onClick={() => changeColor('#714f62')}></button>
               <button style={{ backgroundColor: '#667c80' }} className="paletteBtn" onClick={() => changeColor('#667c80')}></button>
-              <button style={{ backgroundColor: '#dcb24e' }} className="paletteBtn" onClick={() => changeColor('#dcb24e')}></button>
+              <button style={{ backgroundColor: '#ee9b3e' }} className="paletteBtn" onClick={() => changeColor('#ee9b3e')}></button>
               <button style={{ backgroundColor: '#354060' }} className="paletteBtn" onClick={() => changeColor('#354060')}></button>
               <button style={{ backgroundColor: '#d5cdc1' }} className="paletteBtn" onClick={() => changeColor('#d5cdc1')}></button>
-              <button style={{ backgroundColor: '#ee9b3e' }} className="paletteBtn" onClick={() => changeColor('#ee9b3e')}></button>
+              <button style={{ backgroundColor: '#5b3e31' }} className="paletteBtn" onClick={() => changeColor('#5b3e31')}></button>
               <button style={{ backgroundColor: '#f7f0c7' }} className="paletteBtn" onClick={() => changeColor('#f7f0c7')}></button>
           </div>
 
