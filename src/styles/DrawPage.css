@@ -112,7 +112,8 @@ body {
   }
   
   #discardWarn {
-    background-color: #000000;
+    padding: 90px;
+    background-color: #000000ce;
     font-size: 50px;
     color: #ffffff;
     z-index: 9999; /* Higher value to ensure it overlaps the canvas */
@@ -120,8 +121,6 @@ body {
 
   #discardContainer {
     border-radius: 1000px;
-    width: 540px;
-    height: 160px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,4 +130,3 @@ body {
     transform: translate(-50%, -50%);
     z-index: 9999;
   }
-  

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import backBtnImg from '../assets/images/back.png';
 import undoBtnImg from '../assets/images/undo.png';
@@ -16,6 +16,7 @@ function DrawingBoard() {
   const canvasY = useRef(0);
   const [isCanvasEmpty, setCanvasEmpty] = useState(true);
   const [isDiscardVisible, setDiscardVisible] = useState(false);
+  const navigate = useNavigate();
 
   const changeColor = (color) => {
     if (!isDown.current) {
@@ -195,18 +196,17 @@ function DrawingBoard() {
           context.lineTo(point.x, point.y);
         }
       });
-
       context.stroke();
     });
   };
 
   const backButton = () => {
+    
     if (!isCanvasEmpty) {
-      console.log("Visible!");
-      setDiscardVisible(true); // Show discardWarn when canvas is not empty
+      setDiscardVisible(true);
     } else {
-      console.log("Invisible!");
-      setDiscardVisible(false); // Hide discardWarn when canvas is empty
+      setDiscardVisible(false);
+      navigate('/');
     }
   };
 
