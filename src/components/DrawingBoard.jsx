@@ -309,8 +309,10 @@ return (
     </div>
 
     <div id="resultContainer">
-      <div id="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
-        <Souvenir />
+      <div id ="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
+      <div className='wrapper'>
+            <Souvenir />
+        </div>
       </div>
     </div>
 
