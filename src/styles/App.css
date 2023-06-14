@@ -47,18 +47,25 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(10, 9.90vw);
-    grid-template-rows: repeat(10, 9.2vh);
+    grid-template-columns: repeat(10, 9.70vw);
+    grid-template-rows: repeat(10, 9.4vh);
     overflow-y: auto;
     margin-left: 0;
+    margin-top: 1rem;
+    border: solid 0.3rem #E0A59C;
+    box-shadow: 1px 13px 80px #81544d;
+    margin-bottom: 1rem;
 }
 
 .grid-item {
+    /* border: #E0A59C solid; */
     display: flex;
+    /* background-image: url(/src/assets/images/bg-canvas.svg); */
     align-items: center;
     justify-content: center;
     background-size: cover;
-    background-color: #E0A59C;
+    border: 0;
+    background-color: #fff;
     padding: 0px;
 }
 
@@ -68,4 +75,5 @@ img.grid-img {
     width: 100%;
     height: 100%;
     background-size: contain;
+    background-color: #fff;
 }

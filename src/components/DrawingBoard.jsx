@@ -1,7 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
-import backBtnImg from '../assets/images/back.png';
-import undoBtnImg from '../assets/images/undo.png';
+//import backBtnImg from '../assets/images/back.png';
+import backBtnImg from '../assets/images/close-btn.svg';
+//import undoBtnImg from '../assets/images/undo.png';
+import undoBtnImg from '../assets/images/undo-btn.svg';
 import { useContext } from 'react';
 import { ArtworkIdContext } from '../contexts/ArtworkIdContext';
 import { Image } from 'canvas';
@@ -326,47 +328,47 @@ return (
       </div>
     </div>
 
-    <div>
+    <div className='sidebar-container'>
       <div id="sidebar">
-          <button id="backButton" className="imgBtn" onClick={backButton}>
-              <img src={backBtnImg} className="sidebarImg" />
+
+        <div className='option-btn-group'>
+          <button id="backButton" className='btn-icon' onClick={backButton}>
+              <img src={backBtnImg} />
           </button>
 
-          <p>
+          <button id="undoBtn" className='btn-icon' onClick={undoLastLine}>
+              <img src={undoBtnImg} />
+          </button>
+        </div>
+
+        <div id="colorPicker">
+          <button style={{ backgroundColor: '#ffffff' }} className="paletteBtn" onClick={() => changeColor('#ffffff')}></button>
+          <button style={{ backgroundColor: '#1d242d' }} className="paletteBtn" onClick={() => changeColor('#000000')}></button>
+          <button style={{ backgroundColor: '#bbd3cf' }} className="paletteBtn" onClick={() => changeColor('#bbd3cf')}></button>
+          <button style={{ backgroundColor: '#908143' }} className="paletteBtn" onClick={() => changeColor('#908143')}></button>
+          <button style={{ backgroundColor: '#bc8173' }} className="paletteBtn" onClick={() => changeColor('#bc8173')}></button>
+          <button style={{ backgroundColor: '#d7bfa1' }} className="paletteBtn" onClick={() => changeColor('#d7bfa1')}></button>
+          <button style={{ backgroundColor: '#b93f35' }} className="paletteBtn" onClick={() => changeColor('#b93f35')}></button>
+          <button style={{ backgroundColor: '#714f62' }} className="paletteBtn" onClick={() => changeColor('#714f62')}></button>
+          <button style={{ backgroundColor: '#667c80' }} className="paletteBtn" onClick={() => changeColor('#667c80')}></button>
+          <button style={{ backgroundColor: '#ee9b3e' }} className="paletteBtn" onClick={() => changeColor('#ee9b3e')}></button>
+          <button style={{ backgroundColor: '#354060' }} className="paletteBtn" onClick={() => changeColor('#354060')}></button>
+          <button style={{ backgroundColor: '#d5cdc1' }} className="paletteBtn" onClick={() => changeColor('#d5cdc1')}></button>
+          <button style={{ backgroundColor: '#5b3e31' }} className="paletteBtn" onClick={() => changeColor('#5b3e31')}></button>
+          <button style={{ backgroundColor: '#f7f0c7' }} className="paletteBtn" onClick={() => changeColor('#f7f0c7')}></button>
+          <button style={{ backgroundColor: '#728f61' }} className="paletteBtn" onClick={() => changeColor('#728f61')}></button>
+        </div>
+
+        <div className='brush-size-group'>
               <button id="sizeBtn5" style={{ borderRadius: '50%', height: '30px', width: '30px' }} className="sizeBtn" onClick={() => changeBrushSize(10)}></button>
               <button id="sizeBtn25" style={{ borderRadius: '50%', height: '40px', width: '40px' }} className="sizeBtn" onClick={() => changeBrushSize(40)}></button>
               <button id="sizeBtn40" style={{ borderRadius: '50%', height: '50px', width: '50px' }} className="sizeBtn" onClick={() => changeBrushSize(80)}></button>
               <input id="brushSize" type="hidden" value={curBrushSize.current} />
-          </p>
+        </div>
 
-          <div id="colorPicker">
-          <button style={{ backgroundColor: '#ffffff' }} className="paletteBtn" onClick={() => changeColor('#ffffff')}></button>
-              <button style={{ backgroundColor: '#1d242d' }} className="paletteBtn" onClick={() => changeColor('#000000')}></button>
-              <button style={{ backgroundColor: '#bbd3cf' }} className="paletteBtn" onClick={() => changeColor('#bbd3cf')}></button>
-              <button style={{ backgroundColor: '#908143' }} className="paletteBtn" onClick={() => changeColor('#908143')}></button>
-              <button style={{ backgroundColor: '#bc8173' }} className="paletteBtn" onClick={() => changeColor('#bc8173')}></button>
-              <button style={{ backgroundColor: '#d7bfa1' }} className="paletteBtn" onClick={() => changeColor('#d7bfa1')}></button>
-              <button style={{ backgroundColor: '#b93f35' }} className="paletteBtn" onClick={() => changeColor('#b93f35')}></button>
-              <button style={{ backgroundColor: '#714f62' }} className="paletteBtn" onClick={() => changeColor('#714f62')}></button>
-              <button style={{ backgroundColor: '#667c80' }} className="paletteBtn" onClick={() => changeColor('#667c80')}></button>
-              <button style={{ backgroundColor: '#ee9b3e' }} className="paletteBtn" onClick={() => changeColor('#ee9b3e')}></button>
-              <button style={{ backgroundColor: '#354060' }} className="paletteBtn" onClick={() => changeColor('#354060')}></button>
-              <button style={{ backgroundColor: '#d5cdc1' }} className="paletteBtn" onClick={() => changeColor('#d5cdc1')}></button>
-              <button style={{ backgroundColor: '#5b3e31' }} className="paletteBtn" onClick={() => changeColor('#5b3e31')}></button>
-              <button style={{ backgroundColor: '#f7f0c7' }} className="paletteBtn" onClick={() => changeColor('#f7f0c7')}></button>
-          </div>
-
-          <p>
-
-          <button id="undoBtn" className="imgBtn" onClick={undoLastLine}>
-              <img src={undoBtnImg} className="sidebarImg" />
-          </button>
-
-
-          <button id="sendBtn" className="imgBtn" onClick={sendDrawing} disabled={isCanvasEmpty}>
-              Send
-          </button>
-          </p>
+        <button id="sendBtn" className="imgBtn" onClick={sendDrawing} disabled={isCanvasEmpty}>
+          Send
+        </button>
 
       </div>
     </div>

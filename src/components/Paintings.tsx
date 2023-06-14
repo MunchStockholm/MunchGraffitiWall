@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from 'axios';
 import { Link } from "react-router-dom";
+import crazybunny from '../assets/images/Temp.png';
 
 const Paintings = () => {
-    const crazybunny = "image";
+    
     const [images, setImages] = useState<{id: number, url: string, position: string}[]>([]);
     const [positions, setPositions] = useState<string[]>([]);
     const [replaceIndex, setReplaceIndex] = useState(0);
@@ -100,13 +101,11 @@ const Paintings = () => {
 
             {images.map((image) => (
                 <div key={image.id} className="grid-item" style={{ gridArea: image.position }}>
-                    <img className="grid-img" src={image.url} alt={`Image ${image.id}`} />
+                    <img className="grid-img" src={image.url} alt={""} />
                 </div>
             ))}
         </div>}
-            <Link to="/">
-            <button className="button">Back to start</button>
-            </Link>
+
     </div>
     );
 };
