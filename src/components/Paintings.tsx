@@ -105,9 +105,7 @@ const Paintings = () => {
                 </div>
             ))}
         </div>}
-            <Link to="/">
-            <button className="button">Back to start</button>
-            </Link>
+
     </div>
     );
 };

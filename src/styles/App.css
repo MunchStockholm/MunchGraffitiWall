@@ -48,12 +48,12 @@
 .grid-container {
     display: grid;
     grid-template-columns: repeat(10, 9.70vw);
-    grid-template-rows: repeat(10, 8.5vh);
+    grid-template-rows: repeat(10, 9.4vh);
     overflow-y: auto;
     margin-left: 0;
     margin-top: 1rem;
-    border: solid 0.1rem #E0A59C;
-    box-shadow: 1px 10px 80px #81544d;
+    border: solid 0.3rem #E0A59C;
+    box-shadow: 1px 13px 80px #81544d;
     margin-bottom: 1rem;
 }
 
