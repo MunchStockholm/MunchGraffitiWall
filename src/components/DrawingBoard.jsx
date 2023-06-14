@@ -28,7 +28,6 @@ function DrawingBoard() {
 
   const changeColor = (color) => {
     if (isDown.current) {
-      // Finish the current line before changing color
       isDown.current = false;
       ctx.current.closePath();
       lineHistory.current.push([...currentLine.current]);
@@ -275,17 +274,15 @@ function DrawingBoard() {
   
         const ctx = myCanvas.getContext('2d');
         ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-        lineHistory.current = []; // Empty the undo history
+        lineHistory.current = [];
         setCanvasEmpty(true);
   
         setResultVisible(true);
-        // navigate('/souvenir');
       } else {
         throw new Error('Failed to send the drawing');
       }
     } catch (error) {
       console.error('Error sending drawing:', error);
-      // Display a popup
       window.alert('Failed to send the drawing. Please try again later.');
     } finally {
       setLoadVisible(false);
@@ -310,8 +307,15 @@ return (
 
     <div id="resultContainer">
       <div id ="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
-      <div className='wrapper'>
+        <div className='wrapper'>
             <Souvenir />
+            <div className='result-container'>
+              <p>
+                <h3>Congratulations!</h3>
+                This is a beautiful artwork
+              </p>
+              <Link to="/"><button class="buttonTheme">Return</button></Link>
+            </div>
         </div>
       </div>
     </div>
