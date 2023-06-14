@@ -6,6 +6,7 @@ import undoBtnImg from '../assets/images/undo.png';
 import { useContext } from 'react';
 import { ArtworkIdContext } from '../contexts/ArtworkIdContext';
 import { Image } from 'canvas';
+import Souvenir from './Souvenir';
 
 //import Paintings from './Paintings';
 
@@ -22,6 +23,7 @@ function DrawingBoard() {
   const canvasY = useRef(0);
   const [isCanvasEmpty, setCanvasEmpty] = useState(true);
   const [isDiscardVisible, setDiscardVisible] = useState(false);
+  const [isResultVisible, setResultVisible] = useState(false);
 
   // lagt til av Caro
   const navigate = useNavigate();
@@ -279,7 +281,8 @@ function DrawingBoard() {
         lineHistory.current = []; // Empty the undo history
         setCanvasEmpty(true);
   
-        navigate('/souvenir');
+        setResultVisible(true);
+        // navigate('/souvenir');
       } else {
         throw new Error('Failed to send the drawing');
       }
@@ -291,7 +294,6 @@ function DrawingBoard() {
       setLoadVisible(false);
     }
   };
-  
 
 return (
   <div>
@@ -306,6 +308,12 @@ return (
             <button className="buttonTheme" onClick={backButtonNo} disabled={isCanvasEmpty}>No</button>
             <Link to="/"><button className="buttonTheme" disabled={isCanvasEmpty}>Yes</button></Link>
         </div>
+      </div>
+    </div>
+
+    <div id="resultContainer">
+      <div id="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
+        <Souvenir />
       </div>
     </div>
 
