@@ -34,9 +34,9 @@ const Login = () => {
           <header className="App-header">
             <p> Welcome Admin! </p>
           </header>
-          <body>
+          <main>
             <AdminControllBoard />
-          </body>
+          </main>
         </div>
       );
     } else if (username === "guest") {

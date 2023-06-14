@@ -1,12 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/App.css';
 import axios, { AxiosResponse } from 'axios';
+import { ArtworkContext } from '../contexts/ArtworkContext';
+import IArtworkContext from '../interfaces/IArtworkContext';
 
 const AdminControllBoard = () => {
     const [images, setImages] = useState<{_id: any, url: string}[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const { getArtworksFromService } = useContext(ArtworkContext) as IArtworkContext;
+
     const fetchImagesFromApi = async () => {
+        setIsLoading(true);
+        
+        try {
+            console.log('fetching images from api...');
+
+            if (images.length <= 0){
+                const response = await getArtworksFromService();
+                console.log('response: ', response);
+                if (response.length > 0) {
+                    const newImages = await Promise.all(response.map(async (imageData: { _id: any; ImageBytes: any; }) => {
+                        const base64Response = fetch(`data:image/bmp;base64,${imageData.ImageBytes}`);
+                        const blob = await base64Response.then(res => res.blob());
+                        return {_id: imageData._id, url: URL.createObjectURL(blob)};
+                    }));
+                    console.log('newImages: ', newImages);
+                    setImages(newImages);
+                } else {
+                    throw new Error('No images returned from the API');
+                }
+            }
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    /*const fetchImagesFromApi = async () => {
         setIsLoading(true);
         const response: AxiosResponse<{ _id: any, ImageBytes: string }[]> = await axios.get('https://graffitiwallserver.onrender.com/');
         if (response.data.length > 0) {
@@ -19,11 +52,11 @@ const AdminControllBoard = () => {
             throw new Error('No images returned from the API');
         }
         setIsLoading(false);
-    };
+    };*/
 
     useEffect(() => {
         fetchImagesFromApi().catch(error => console.log(error));
-    }, []);
+    }, []); // caro la til images her for å få useEffect til å kjøre på nytt når vi sletter et bilde
 
     const removeFromBoard = (_id: any) => {
         setIsLoading(true);

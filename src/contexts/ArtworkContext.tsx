@@ -12,6 +12,7 @@ const ArtworkProvider = ({ children }: Props) => {
     const getArtworksFromService = async () => {
         const response = await ArtworkService.getArtworks();
         setArtworks(response);
+        return response;
     }
 
     const getArtworkByIdFromService = async (id: any) => {

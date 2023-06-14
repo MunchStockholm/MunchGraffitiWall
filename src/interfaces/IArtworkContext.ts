@@ -1,5 +1,5 @@
 export default interface IArtworkContext {
     artworks: any[];
-    getArtworksFromService: () => void;
+    getArtworksFromService: () => Promise<any>;
     getArtworkByIdFromService: (id: any) => Promise<any>;
 }
