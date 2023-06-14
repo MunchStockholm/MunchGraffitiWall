@@ -309,13 +309,9 @@ return (
     </div>
 
     <div id="resultContainer">
-      <div id="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
-        <Souvenir />
-        Congratulations!
-        <div className='btn-group'>
-          <Link to="/">
-            <button className="buttonTheme"><Link to="/">Return</Link></button>
-          </Link>
+      <div id ="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
+      <div className='wrapper'>
+            <Souvenir />
         </div>
       </div>
     </div>
