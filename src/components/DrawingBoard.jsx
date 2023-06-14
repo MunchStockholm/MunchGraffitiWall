@@ -311,8 +311,12 @@ return (
     <div id="resultContainer">
       <div id="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
         <Souvenir />
-        <Link to="/"><button className="buttonTheme" disabled={isCanvasEmpty}>Yes</button></Link>
-        <button className="buttonTheme" onClick={backButtonNo} disabled={isCanvasEmpty}>No</button>
+        Congratulations!
+        <div className='btn-group'>
+          <Link to="/">
+            <button className="buttonTheme"><Link to="/">Return</Link></button>
+          </Link>
+        </div>
       </div>
     </div>
 

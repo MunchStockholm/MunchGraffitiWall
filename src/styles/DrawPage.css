@@ -109,6 +109,8 @@ body {
     border: 0px;
     border-radius: 10px;
     margin: 10px;
+    cursor: pointer;
+    z-index: 2;
   }
   
   #discardWarn {
