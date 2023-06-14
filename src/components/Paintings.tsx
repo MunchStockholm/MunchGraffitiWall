@@ -22,6 +22,7 @@ const Paintings = () => {
         return positions;
     };
 
+    // Shuffle the array of positions - Fisher Yates shuffle
     const shuffleArray = (array: string[]) => {
         for (let i = array.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
@@ -30,14 +31,20 @@ const Paintings = () => {
         return array;
     };
 
+    const update = () => {
+        addNewImagesFromApi('https://graffitiwallserver.onrender.com/');
+    }
 
     useEffect(() => {
         const count = 10; 
+        
         setIsLoading(true);
+        
         let tempPositions = generatePositions(count);
+        update();
         tempPositions = shuffleArray(tempPositions);
-    
-        let tempImages = Array(100).fill({id: -1, url: crazybunny, position: ""}); // Add 100 initial images
+        // addNewImagesFromApi('https://graffitiwallserver.onrender.com/');
+        let tempImages = Array(100).fill({id: -1, url: crazybunny, position: ""}); // Add 100 initial images for the crazybunny (this is ment only for the first time the page is loaded and made to make the grid initialize)
     
         tempImages = tempImages.map((image, index) => ({...image, id: index, position: tempPositions[index]}));
 
@@ -46,7 +53,7 @@ const Paintings = () => {
         setImages(tempImages);
     
         const interval = setInterval(() => {
-            addNewImagesFromApi('https://graffitiwallserver.onrender.com/');
+            update();
         }, 10000);
         
         return () => {
@@ -73,16 +80,21 @@ const Paintings = () => {
         const newImages: string[] = await fetchImagesFromApi(apiUrl);
       
         setImages(prevImages => {
-            let newImagesState = [...prevImages];
-    
-            newImages.forEach((newImage, index) => {
-                const replaceIndex = index % 100; 
-                newImagesState[replaceIndex] = {...newImagesState[replaceIndex], url: newImage};
-            });
-    
-            return newImagesState;
+          let newImagesState = [...prevImages];
+          let currentIndex = replaceIndex;
+      
+          newImages.forEach(newImage => {
+            newImagesState[currentIndex] = { ...newImagesState[currentIndex], url: newImage };
+            currentIndex++;
+            if (currentIndex >= newImagesState.length) {
+              currentIndex = 0;
+            }
+          });
+      
+          setReplaceIndex(currentIndex);
+          return newImagesState;
         });
-    };
+      };
     return (
         <div>
             {isLoading ? <div>Loading...</div> :
