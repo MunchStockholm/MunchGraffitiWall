@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import IArtworkContext from '../interfaces/IArtworkContext';
 import { ArtworkContext } from '../contexts/ArtworkContext';
 import { ArtworkIdContext } from '../contexts/ArtworkIdContext';
+import '../styles/Souvenir.css';
 
 const Souvenir = () => {
     const { getArtworkByIdFromService } = useContext(ArtworkContext) as IArtworkContext;
