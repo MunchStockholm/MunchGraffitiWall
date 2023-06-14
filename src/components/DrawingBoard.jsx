@@ -311,6 +311,8 @@ return (
     <div id="resultContainer">
       <div id="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
         <Souvenir />
+        <Link to="/"><button className="buttonTheme" disabled={isCanvasEmpty}>Yes</button></Link>
+        <button className="buttonTheme" onClick={backButtonNo} disabled={isCanvasEmpty}>No</button>
       </div>
     </div>
 
