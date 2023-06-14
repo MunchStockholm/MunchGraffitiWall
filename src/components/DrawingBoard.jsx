@@ -1,14 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom'; // useNavigate lagt til av Caro
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import backBtnImg from '../assets/images/back.png';
 import undoBtnImg from '../assets/images/undo.png';
-// lagt til av Caro
 import { useContext } from 'react';
 import { ArtworkIdContext } from '../contexts/ArtworkIdContext';
 import { Image } from 'canvas';
 import Souvenir from './Souvenir';
-
-//import Paintings from './Paintings';
 
 function DrawingBoard() {
   const curColor = useRef('black');
@@ -25,7 +22,6 @@ function DrawingBoard() {
   const [isDiscardVisible, setDiscardVisible] = useState(false);
   const [isResultVisible, setResultVisible] = useState(false);
 
-  // lagt til av Caro
   const navigate = useNavigate();
   const [, setArtworkId] = useContext(ArtworkIdContext);
   const [isLoadVisible, setLoadVisible] = useState(false);
@@ -190,6 +186,7 @@ function DrawingBoard() {
       myCanvas.removeEventListener('mousemove', handleMouseMove);
       myCanvas.removeEventListener('mouseup', handleMouseUp);
       myCanvas.removeEventListener('mouseleave', handleMouseLeave);
+
       document.removeEventListener('mousemove', handleDocumentMouseMove);
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
