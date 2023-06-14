@@ -293,7 +293,7 @@ function DrawingBoard() {
   };
 
 return (
-  <div>
+  <>
     <canvas id="myCanvas" width="900px" height="900px" style={{ backgroundColor: 'white' }}>
       Sorry, your browser doesn't support canvas technology.
     </canvas>
@@ -366,7 +366,7 @@ return (
 
       </div>
     </div>
-  </div>
+  </>
 );
 }
 
