@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    z-index: 1;
   }
   
   #board {
@@ -17,6 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    z-index: 1;
   }
   
   #sidebar {
@@ -25,7 +27,7 @@ body {
     left: 0;
     width: 200px;
     padding: 20px;
-    z-index: 9999;
+    z-index: 1;
   }
   
   #rightSidebar {
@@ -49,7 +51,7 @@ body {
   .sizeBtn {
     margin-left: 1vw;
     border-color: white;
-    background-color: #1d242d;
+    background-color: #000000;
   }
   
   .imgBtn {
@@ -79,6 +81,11 @@ body {
     right: 20px;
   }  
   
+  #sendBtn:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+  }  
+
   #myCanvas {
     background-color: #ffffff;
     border: 1px solid black;
@@ -90,5 +97,91 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
+    z-index: 1;
+  }
+
+  .buttonTheme {
+    background-color: #988155;
+    font-size: x-large;
+    color: #ffffff;
+    height: 60px;
+    width: 250px;
+    border: 0px;
+    border-radius: 10px;
+    margin: 10px;
   }
   
+  #discardWarn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Added to align items vertically */
+    background-color: #000000ce;
+    font-size: 50px;
+    color: #ffffff;
+    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+  }
+  
+  #discardContainer {
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: column; /* Added to align items vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Added to center text horizontally */
+  }
+
+  #resultContainer {
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: column; /* Added to align items vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Added to center text horizontally */
+  }
+  
+  #resultFrame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Added to align items vertically */
+    background-color: #000000ce;
+    font-size: 50px;
+    color: #ffffff;
+    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+  }
+  
+  #loadContent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Added to align items vertically */
+    background-color: #000000ce;
+    font-size: 50px;
+    color: #ffffff;
+    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+  }
+  
+  #loadContainer {
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: column; /* Added to align items vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Added to center text horizontally */
+  }
