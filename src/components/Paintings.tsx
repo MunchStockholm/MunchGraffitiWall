@@ -52,7 +52,7 @@ const Paintings = () => {
     
         const interval = setInterval(() => {
             update();
-        }, 10000);
+        }, 5000);
         
         return () => {
             clearInterval(interval);
