@@ -4,6 +4,8 @@ import backBtnImg from '../assets/images/back.png';
 import undoBtnImg from '../assets/images/undo.png';
 import { useContext } from 'react';
 import { ArtworkIdContext } from '../contexts/ArtworkIdContext';
+import { Image } from 'canvas';
+import Souvenir from './Souvenir';
 
 function DrawingBoard() {
   const curColor = useRef('black');
@@ -18,6 +20,7 @@ function DrawingBoard() {
   const canvasY = useRef(0);
   const [isCanvasEmpty, setCanvasEmpty] = useState(true);
   const [isDiscardVisible, setDiscardVisible] = useState(false);
+  const [isResultVisible, setResultVisible] = useState(false);
 
   const navigate = useNavigate();
   const [, setArtworkId] = useContext(ArtworkIdContext);
@@ -233,38 +236,53 @@ function DrawingBoard() {
 
   const sendDrawing = async () => {
     try {
-    setLoadVisible(true);
-
-    const myCanvas = document.getElementById('myCanvas');
-    const canvasDataUrl = myCanvas.toDataURL('image/png', 0.5);
-    const [, base64Data] = canvasDataUrl.split(',');
-
-    const artworkData = {
-      ImageBytes: base64Data,
-      ImageUrl: '',
-      IsFeatured: true,
-    };
-
-    await fetch('https://graffitiwallserver.onrender.com/', {
+      setLoadVisible(true);
+  
+      const myCanvas = document.getElementById('myCanvas');
+      const resizedCanvas = document.createElement('canvas');
+      const resizedCtx = resizedCanvas.getContext('2d');
+  
+      const resizeWidth = 300;
+      const resizeHeight = 300;
+  
+      resizedCanvas.width = resizeWidth;
+      resizedCanvas.height = resizeHeight;
+  
+      resizedCtx.drawImage(myCanvas, 0, 0, resizeWidth, resizeHeight);
+  
+      const canvasDataUrl = resizedCanvas.toDataURL('image/png', 0.1);
+      const [, base64Data] = canvasDataUrl.split(',');
+  
+      const artworkData = {
+        ImageBytes: base64Data,
+        ImageUrl: '',
+        IsFeatured: true,
+      };
+  
+      const response = await fetch('https://graffitiwallserver.onrender.com/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(artworkData),
-      })
-      .then((response) => response.json())
-      .then((data) => {
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
         console.log('Drawing sent successfully!');
         console.log(data);
         setArtworkId(data.insertedId);
-
+  
         const ctx = myCanvas.getContext('2d');
         ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
         lineHistory.current = []; // Empty the undo history
         setCanvasEmpty(true);
-
-        navigate('/souvenir'); // From here we need to fix a pop up to retrieve souveir, not a page itself
-      })
+  
+        setResultVisible(true);
+        // navigate('/souvenir');
+      } else {
+        throw new Error('Failed to send the drawing');
+      }
     } catch (error) {
       console.error('Error sending drawing:', error);
       // Display a popup
@@ -290,6 +308,12 @@ return (
       </div>
     </div>
 
+    <div id="resultContainer">
+      <div id="resultFrame" style={{ display: isResultVisible ? 'block' : 'none' }}>
+        <Souvenir />
+      </div>
+    </div>
+
     <div id="loadContainer">
       <div id="loadContent" style={{ display: isLoadVisible ? 'block' : 'none' }}>
         Sending drawing...
@@ -303,9 +327,9 @@ return (
           </button>
 
           <p>
-              <button id="sizeBtn5" style={{ borderRadius: '50%', height: '30px', width: '30px' }} className="sizeBtn" onClick={() => changeBrushSize(5)}></button>
-              <button id="sizeBtn25" style={{ borderRadius: '50%', height: '40px', width: '40px' }} className="sizeBtn" onClick={() => changeBrushSize(30)}></button>
-              <button id="sizeBtn40" style={{ borderRadius: '50%', height: '50px', width: '50px' }} className="sizeBtn" onClick={() => changeBrushSize(50)}></button>
+              <button id="sizeBtn5" style={{ borderRadius: '50%', height: '30px', width: '30px' }} className="sizeBtn" onClick={() => changeBrushSize(10)}></button>
+              <button id="sizeBtn25" style={{ borderRadius: '50%', height: '40px', width: '40px' }} className="sizeBtn" onClick={() => changeBrushSize(40)}></button>
+              <button id="sizeBtn40" style={{ borderRadius: '50%', height: '50px', width: '50px' }} className="sizeBtn" onClick={() => changeBrushSize(80)}></button>
               <input id="brushSize" type="hidden" value={curBrushSize.current} />
           </p>
 
