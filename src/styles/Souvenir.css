@@ -70,7 +70,9 @@
     width: 20vw;
     height: 55vh;
     display: flex;
-    background-color: white;
+    background-image: url('../assets/images/bg-canvas.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .image-container img {
