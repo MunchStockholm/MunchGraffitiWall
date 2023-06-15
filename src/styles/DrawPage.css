@@ -155,6 +155,8 @@
     border: 0px;
     border-radius: 10px;
     margin: 10px;
+    cursor: pointer;
+    z-index: 2;
   }
   
   #discardWarn {
@@ -166,29 +168,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Added to align items vertically */
+    flex-direction: column;
     background-color: #000000ce;
     font-size: 50px;
     color: #ffffff;
-    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+    z-index: 9999;
   }
   
   #discardContainer {
     border-radius: 1000px;
     display: flex;
-    flex-direction: column; /* Added to align items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Added to center text horizontally */
+    text-align: center;
   }
 
   #resultContainer {
     border-radius: 1000px;
     display: flex;
-    flex-direction: column; /* Added to align items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Added to center text horizontally */
+    text-align: center;
   }
   
   #resultFrame {
@@ -198,13 +200,20 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: column; /* Added to align items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #000000ce;
     font-size: 50px;
     color: #ffffff;
-    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+    z-index: 9999;
+  }
+
+  .result-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: xx-large;
   }
   
   #loadContent {
@@ -216,20 +225,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Added to align items vertically */
+    flex-direction: column;
     background-color: #000000ce;
     font-size: 50px;
     color: #ffffff;
-    z-index: 9999; /* Higher value to ensure it overlaps the canvas */
+    z-index: 9999; 
   }
   
   #loadContainer {
     border-radius: 1000px;
     display: flex;
-    flex-direction: column; /* Added to align items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Added to center text horizontally */
+    text-align: center;
   }
 
   #backButton {
