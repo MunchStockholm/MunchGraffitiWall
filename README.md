@@ -37,6 +37,10 @@ To Visit App:
 
 ```localhost:3000```
 
+To View Graffiti Wall:
+
+```localhost:3000/paintings```
+
 ## Environment Setup
 
 For security reasons, the admin password isn't hard-coded into the project. Instead, it's stored in a `.env` file which isn't committed to the repository.
