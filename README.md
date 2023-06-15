@@ -25,17 +25,17 @@ Clone down this repository. You will need Node.js and npm installed globally on 
 
 Installation:
 
-`npm install`
+```npm install```
 
 To Start Server:
 
-`npm start`
+```npm start```
 
 **Note**: It is important to run the server on port 3000 due to CORS restrictions. The backend server only allows origin from this address.
 
 To Visit App:
 
-`localhost:3000`
+```localhost:3000```
 
 ## Environment Setup
 
@@ -43,26 +43,38 @@ For security reasons, the admin password isn't hard-coded into the project. Inst
 
 To setup your environment, create a `.env` file in the root directory of the project, with the following content:
 
-`REACT_APP_ADMIN_PASSWORD=<your_admin_password_here>`
+```REACT_APP_ADMIN_PASSWORD=<your_admin_password_here>```
 
 ## Application Structure
 
 - `index.tsx`: This is the entry point of our app. It wraps our app with the provided context providers, ArtworkProvider and ArtworkIdProvider.
+
 - `App.tsx`: This is our main component which currently renders the Login component.
+
 - `Login.tsx`: This component is responsible for handling both admin and guest login. Depending on the username, it either renders the AdminControlBoard component or a Router component that handles navigation between HomePage, DrawPage and Souvenir.
+
 - `HomePage.tsx` and `Home.tsx`: These components present the homepage of the app. It displays a set of instructions for users to follow in both English and Norwegian, and a start button that leads to the drawing page.
+
 - `DrawPage.tsx`: This component renders the DrawingBoard component where users can create their unique artworks.
+
 - `DrawingBoard.jsx`: A component that forms the heart of the art application. It uses a canvas for drawing, allows color and brush size selection, implements undo functionality, handles user interactions and sends requests to a server to save artwork. The state and properties of the canvas are managed through various React hooks.
+
 - `AdminControlBoard.tsx`: This component is responsible for fetching images from the API and managing them in a grid. It contains functionalities for loading, displaying, and removing images. It fetches image data using the ArtworkContext and updates its local state accordingly.
+
 - `IArtworkContext.ts`: This interface defines the shape of the context object used by ArtworkProvider. It contains artworks array and two methods: getArtworksFromService and getArtworkByIdFromService.
+
 - `ArtworkProvider.tsx`: This component provides ArtworkContext to its children. It communicates with the ArtworkService to fetch artworks and holds this data in its state.
+
 - `ArtworkIdProvider.tsx`: This component provides ArtworkIdContext to its children. It keeps track of the current artwork ID.
+
 - `ArtworkService.ts`: This module provides an interface to communicate with the server. It exports two methods: getArtworks and getArtworkById.
 
 Additionally, there are three important configuration files:
 
 - `tsconfig.json`: This configuration file provides directions to the compiler to generate JavaScript code suitable for es5 environments. It also includes some strict type-checking options.
+
 - `package.json`: It contains the list of project dependencies and devDependencies, scripts, version, license information, etc.
+
 - `webpack.config.js`: The Webpack configuration is set up to fallback certain environment features to their browser alternatives.
 
 ## Reporting Bugs
