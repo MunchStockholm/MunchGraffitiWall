@@ -1,8 +1,8 @@
 # Graffiti Wall Application for Munch
 
-Welcome to GraffitiWall, an interactive platform where users can create their unique artworks and exhibit them on a digital graffiti wall. This project is built using React and TypeScript.
+Welcome to GraffitiWall, an interactive platform where users can create their unique artworks and exhibit them on a digital graffiti wall. This project, built using React and TypeScript, is currently a prototype intended for use on laptop devices.
 
-In its current version, GraffitiWall enables users to design their artwork and send it to a database where it's displayed on the graffiti wall. Future versions will allow users to receive their artwork as a souvenir!
+GraffitiWall enables users to design their artwork and send it to a database where it's displayed on the graffiti wall. Please note that while our application prototype is designed for laptop devices, in its production form the product is intended to be used with a touch screen for an enhanced user experience. Future versions will also allow users to receive their artwork as a souvenir!
 
 ## Table of contents
 
@@ -67,7 +67,7 @@ To setup your environment, create a `.env` file in the root directory of the pro
 
 - `ArtworkIdProvider.tsx`: This component provides ArtworkIdContext to its children. It keeps track of the current artwork ID.
 
-- `ArtworkService.ts`: This module provides an interface to communicate with the server. It exports two methods: getArtworks and getArtworkById.
+- `ArtworkService.ts`: This module provides communication with the server. It exports two methods: getArtworks and getArtworkById.
 
 Additionally, there are three important configuration files:
 
