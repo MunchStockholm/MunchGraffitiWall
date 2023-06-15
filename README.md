@@ -31,7 +31,9 @@ To Start Server:
 
 ```npm start```
 
-**Note**: It is important to run the server on port 3000 due to CORS restrictions. The backend server only allows origin from this address.
+**Note**: By default, the server uses the API endpoint https://graffitiwallserver.onrender.com. If you wish to run the backend server locally, you will need to modify the endpoint in the code accordingly. The backend server can be found at https://github.com/MunchStockholm/NodeServer.
+
+Also, remember that it's crucial to run the server on port 3000 due to CORS restrictions. The backend server only allows origin from this address.
 
 To Visit App:
 
